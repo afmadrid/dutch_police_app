@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from pathlib import Path
 import os
 from datetime import timedelta
+from django.contrib.messages import constants as messages
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -80,8 +81,14 @@ WSGI_APPLICATION = 'testNew.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        #'ENGINE': 'django.db.backends.sqlite3',
+        #'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'dutch',
+        'USER':'root',
+        'PASSWORD':'Dutchpif2022',
+        'HOST':'localhost',
+        'PORT':'3306'
     }
 }
 
@@ -129,14 +136,7 @@ CRISPY_TEMPLATE_PACK = "bootstrap4"
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-# Redirect to home URL after login
-#LOGIN_REDIRECT_URL = '/'
-#LOGOUT_REDIRECT_URL = "/accounts/login"  # new
 
-# users will be redirected to the home page after login
-#LOGIN_REDIRECT_URL = "home"
-
-#LOGOUT_REDIRECT_URL = "login"
 
 PASSWORD_HASHERS = [
     'django.contrib.auth.hashers.Argon2PasswordHasher',
@@ -148,13 +148,16 @@ PASSWORD_HASHERS = [
 
 
 AUTHENTICATION_BACKENDS = [
-    'django.contrib.auth.backends.ModelBackend',
     'axes.backends.AxesBackend',
+    'django.contrib.auth.backends.ModelBackend',
+    #'axes.backends.AxesBackend',
 ]
 
 AXES_FAILURE_LIMIT=5
-AXES_COOLOFF_TIME = timedelta(minutes=2)
-AXES_LOCK_OUT_BY_COMBINATION_USER_AND_IP = True
+AXES_COOLOFF_TIME = timedelta(minutes=1)
+AXES_ONLY_USER_FAILURES = True
+AXES_RESET_ON_SUCCESS = True
+#AXES_LOCK_OUT_BY_COMBINATION_USER_AND_IP = True
 AXES_LOCKOUT_TEMPLATE = 'lockedout.html'
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
@@ -162,3 +165,10 @@ SESSION_EXPIRE_SECONDS = 10 * 60 # 60 seconds
 SESSION_EXPIRE_AFTER_LAST_ACTIVITY = True
 SESSION_TIMEOUT_REDIRECT = '/login/'
 
+MESSAGE_TAGS = {
+        messages.DEBUG: 'alert-secondary',
+        messages.INFO: 'alert-info',
+        messages.SUCCESS: 'alert-success',
+        messages.WARNING: 'alert-warning',
+        messages.ERROR: 'alert-danger',
+ }

@@ -1,5 +1,8 @@
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
+from django.forms import DateField
+
+
 class SignUpForm(UserCreationForm):
     class Meta:
         model = User
@@ -9,7 +12,7 @@ class SignUpForm(UserCreationForm):
 from django import forms
 
 from django.contrib.auth.models import User
-from .models import Profile , Case, Contact
+from .models import Profile , Case
 
 
 class UpdateUserForm(forms.ModelForm):
@@ -36,17 +39,24 @@ class UpdateProfileForm(forms.ModelForm):
 # creating a form
 class CaseForm(forms.ModelForm):
 
-    date = forms.DateField(help_text='Required. Format: YYYY-MM-DD')
-    # create meta class
+
     class Meta:
         # specify model to be used
         model = Case
 
         # specify fields to be used
-        #fields = ["title", "description", "comment", "date", "FIR", "number"]
+        fields = ["title", "description", "comment", "date", "FIR", "number"]
+        #fields = ["title", "number", "date", "FIR"]
+
+class CreateCaseForm(forms.ModelForm):
+    title = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control'}))
+    number = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control'}))
+    date= forms.DateField(widget= forms.DateInput(format='%d/%m/%Y'))
+    FIR = forms.ImageField(widget=forms.FileInput(attrs={'class': 'form-control-file'}))
+
+
+    class Meta:
+        model = Case
         fields = ["title", "number", "date", "FIR"]
 
-class ContactForm(forms.ModelForm):
-    class Meta:
-        model = Contact
-        fields = "__all__"
+

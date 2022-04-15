@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}List all Cases{% endblock %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+<form method="post" enctype="multipart/form-data" action="/update/{{case.id}}">
+        {% csrf_token %}
+    <div class="container">
+<br>
+    <div class="form-group row">
+    <label class="col-sm-1 col-form-label"></label>
+    <div class="col-sm-4">
+    <h3>Update Details</h3>
+    </div>
+  </div>
+    <div class="form-group row">
+    <label class="col-sm-2 col-form-label">Case Number:</label>
+    <div class="col-sm-4">
+        <input type="text" name="number" id="id_number" required maxlength="15" value="{{ case.number }}"/>
+    </div>
+  </div>
+        <div class="form-group row">
+    <label class="col-sm-2 col-form-label">Case Description:</label>
+    <div class="col-sm-4">
+        <input type="text" name="number" id="id_number" required maxlength="200" value="{{ case.desciption }}"/>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label">Case Title:</label>
+    <div class="col-sm-4">
+        <input type="text" name="title" id="id_title" required maxlength="50" value="{{ case.title }}" />
+    </div>
+  </div>
+    <div class="form-group row">
+    <label class="col-sm-2 col-form-label">Case Date:</label>
+    <div class="col-sm-4">
+        <input type="test" name="date" id="id_date"  value="{{ case.date }}" />
+    </div>
+  </div>
+    <div class="form-group row">
+    <label class="col-sm-2 col-form-label">Case FIR:</label>
+
+        <div class="col-sm-4">
+        <img class="rounded-circle account-img" src="{{ case.FIR.url }} " style="cursor: pointer;"/>
+    </div>
+    </div>
+
+    <div class="form-group row">
+    <label class="col-sm-1 col-form-label"></label>
+    <div class="col-sm-4">
+    <a href="/show" class="btn btn-primary btn-lg">Return</a>
+    </div>
+  </div>
+    </div>
+
+{% endblock %}
