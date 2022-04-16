@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'testApp',
     "crispy_forms",
-    'axes',
+    'axes', # used for limit failed login attempts
 ]
 
 MIDDLEWARE = [
@@ -83,12 +83,12 @@ DATABASES = {
     'default': {
         #'ENGINE': 'django.db.backends.sqlite3',
         #'NAME': BASE_DIR / 'db.sqlite3',
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'dutch',
-        'USER':'root',
-        'PASSWORD':'Dutchpif2022',
-        'HOST':'localhost',
-        'PORT':'3306'
+        'ENGINE': 'django.db.backends.mysql', # this are used to tell the django that the database is mysql
+        'NAME': 'dutch', # the name of database
+        'USER': 'root', # the username
+        'PASSWORD': 'root', # 'Dutchpif2022', # the password for the username which will be used to login dutch database
+        'HOST': 'localhost',
+        'PORT': '3306'
     }
 }
 
@@ -139,7 +139,7 @@ MEDIA_URL = '/media/'
 
 
 PASSWORD_HASHERS = [
-    'django.contrib.auth.hashers.Argon2PasswordHasher',
+    'django.contrib.auth.hashers.Argon2PasswordHasher', #hashin passord with argon2 library
     'django.contrib.auth.hashers.PBKDF2PasswordHasher',
     'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
     'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
@@ -154,7 +154,7 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 AXES_FAILURE_LIMIT=5
-AXES_COOLOFF_TIME = timedelta(minutes=1)
+AXES_COOLOFF_TIME = timedelta(minutes=30)
 AXES_ONLY_USER_FAILURES = True
 AXES_RESET_ON_SUCCESS = True
 #AXES_LOCK_OUT_BY_COMBINATION_USER_AND_IP = True

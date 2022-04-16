@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}Create a Case{% endblock %}
+{% block title %}Create a New Case{% endblock %}
 {% load crispy_forms_tags %}
 
 {% block content %}
@@ -12,30 +12,27 @@
             <div class="form-row">
                 <div class="col-md-5">
                     <div class="form-group">
-                        <!--<label class="small mb-1">Case Title:</label>
-                            {{ form.title }}-->
+
                         <label for = "" class="form-label">Case Title:</label>
                         <input type="text" required name="title"  class="form-control" />
                         <label for = "" class="form-label">Case Number:</label>
                         <input type="text" required name="number"  class="form-control" />
-                            <!--{{ form.number }}-->
+
                     </div>
                     <div class="form-group">
-                        <!--<label class="small mb-1">Case Date:</label>
-                        {{ form.date }}-->
+
                         <label for = "" class="form-label">Case Date:</label>
                         <input type="date" required name="date"  class="form-control" />
                     </div>
-                    <!--<label class="small mb-1">FIR:</label>-->
-                    <label for = "" class="form-label">Case FIR:</label>
-                    <input type="file" required name="FIR"  class="form-control" />
-                    <!--<input type="file" name="FIR" id="id_FIR"  value="{{ form.FIR }}" />
-                    {{ form.FIR }}-->
+
+                    <label for = "" class="form-label">Case evidence:</label>
+                    <input type="file" required name="evidence"  class="form-control" />
+
                 </div>
             </div>
-            <br><br>
+            </br>
             <button type="submit" class="btn btn-dark btn-lg">Submit</button>
-            <a href="/show" class="btn btn-dark btn-lg">Cancle</a>
+            <a href="/show" class="btn btn-dark btn-lg">Cancel</a>
         </form>
     </div>
 

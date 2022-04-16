@@ -1,30 +1,31 @@
 {% extends "base.html" %}
 {% block title %}Profile Page{% endblock title %}
 {% block content %}
+
     {% if user.is_authenticated %}
-        <p>Welcome {{ user.username }} !!!</p>
+    <p>Welcome {{ user.username }} !!!</p>
     {% endif %}
     {% if messages %}
     <ul class="messages">
         {% for message in messages %}
-        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        <li>{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
         {% endfor %}
     </ul>
     {% endif %}
     <div class="row my-3 p-3">
-        <img class="rounded-circle account-img" src="{{ user.profile.avatar.url }} " style="cursor: pointer;"/>
+        <img class="rounded-circle account-img" src="{{ user.profile.photo.url }} " style="cursor: pointer;"/>
     </div>
     {% if user_form.errors %}
-        <div class="alert alert-danger alert-dismissible" role="alert">
-            <div id="form_errors">
-                {% for key, value in user_form.errors.items %}
-                    <strong>{{ value }}</strong>
-                {% endfor %}
-            </div>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
+    <div class="alert alert-danger alert-dismissible" role="alert">
+        <div id="form_errors">
+            {% for key, value in user_form.errors.items %}
+            <strong>{{ value }}</strong>
+            {% endfor %}
         </div>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
     {% endif %}
     <div class="form-content">
         <form method="post" enctype="multipart/form-data">
@@ -33,17 +34,17 @@
                 <div class="col-md-5">
                     <div class="form-group">
                         <label class="small mb-1">Username:</label>
-                            {{ user_form.username }}
+                        {{ user_form.username }}
                         <label class="small mb-1">Email:</label>
-                            {{ user_form.email }}
+                        {{ user_form.email }}
                     </div>
                     <div class="form-group">
                         <a href="/change_password/">Change Password</a>
                         <hr>
-                        <label class="small mb-1">Change Avatar:</label>
-                        {{ profile_form.avatar }}
+                        <label class="small mb-1">Change Photo:</label>
+                        {{ profile_form.photo }}
                     </div>
-                    <label class="small mb-1">Bio:</label> {{ profile_form.bio }}
+                    <label class="small mb-1">Personal_Information:</label> {{ profile_form.personal_information }}
                 </div>
             </div>
             <br><br>
@@ -51,4 +52,5 @@
             <button type="logout" class="btn btn-dark btn-lg">Logout</button>
         </form>
     </div>
+
 {% endblock content %}

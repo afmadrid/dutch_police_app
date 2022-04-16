@@ -4,7 +4,7 @@
     {% if user.is_authenticated %}
     <p>Welcome, {{ user.username }}. Thanks for logging in.</p>
     {% else %}
-    <p>Welcome, new user. Please log in.</p>
+    <p>Please Log In, or Sign Up.</p>
     {% endif %}
     {% for group_for in request.user.groups.all %}
         {% if group_for.name == 'police' %}
@@ -16,19 +16,20 @@
     {% if messages %}
     <ul class="messages">
         {% for message in messages %}
-        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        <li>{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
         {% endfor %}
     </ul>
     {% endif %}
     <div class="jumbotron">
-        <h1 class="display-4">Welcome {{ user.username }} </h1>
+        <h1 class="display-4">Welcome {{ user.username }}</h1>
         <p class="lead">
-            This is <b>Dutch Police Internet Forensic Project</b> . In this project will implement a web-based application for Dutch police for internet forensics which enable police officers to access this information from any site by using Internet access.
+            This is <b>Dutch Police Internet Forensic Project</b>. This project is a web-based application implemented as a repository
+            for Dutch Police online forensics. It allows police officers to access information from any site by using internet access.
         </p>
         <hr class="my-4">
         <p class="lead">
             <a class="btn btn-primary btn-lg" href="{% url 'login' %}" role="button">Login</a>
-            <a class="btn btn-primary btn-lg" href="{% url 'signup' %}" role="button">Signup</a>
+            <a class="btn btn-primary btn-lg" href="{% url 'signup' %}" role="button">Sign Up</a>
             <a class="btn btn-primary btn-lg" href="{% url 'show' %}" role="button">Cases and Artifacts</a>
             <!--<button type="logout" class="btn btn-dark btn-lg">Logout</button>
             <button type="/login" class="btn btn-dark btn-lg">Login</button>
