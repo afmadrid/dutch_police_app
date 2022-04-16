@@ -71,9 +71,9 @@ pip install -r requirements.txt
     python manage.py migrate testApp
     ```
 8. Create super user for being able to perform administrative functions. Enter any username and password.
-    ```bash
-    python manage.py createsuperuser
-    ```
+```bash
+python manage.py createsuperuser
+```
 9. Run the application.
 ```bash
 python manage.py runserver
@@ -86,3 +86,28 @@ http://127.0.0.1:8000/
 ```bash
 http://127.0.0.1:8000/admin
 ```
+
+## Access Levels
+
+The application has three different roles with different access levels, the following are the actions allowed for each level and the credentials to test their access:
+
+Role          | Investigator
+------------- | -------------
+Actions       | Create Case, Add FIR
+Restrictions  | Cannot access Admin
+Credentials   | username: baba, password: AprMay$$129
+
+Role          | Police Officer
+------------- | -------------
+Actions       | Access admin page (http://127.0.0.1:8000/admin)
+Restrictions  | Cannot access Admin
+Credentials   | username: simon.green, password: JunJul$$1290 
+
+
+Role          | Admin Officer
+------------- | -------------
+Actions       | Register User, Access admin page (http://127.0.0.1:8000/admin), Reset password, Lock and Unlock User
+Restrictions  | Cannot access Admin
+Credentials   | username: baba, password: AprMay$$129
+
+Test output is available in the file "ReadMe_TestOutput.docx"
