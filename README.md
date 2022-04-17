@@ -93,21 +93,23 @@ The application has three different roles with different access levels, the foll
 
 Role          | Investigator
 ------------- | -------------
-Actions       | Create Case, Add FIR
+Actions       | Create Case, view case, delete case, add FIR.
 Restrictions  | Cannot access Admin
 Credentials   | username: baba, password: AprMay$$129
 
 Role          | Police Officer
 ------------- | -------------
-Actions       | Access admin page (http://127.0.0.1:8000/admin)
+Actions       | View Case, modify profile.
 Restrictions  | Cannot access Admin
 Credentials   | username: simon.green, password: JunJul$$1290 
 
 
 Role          | Admin Officer
 ------------- | -------------
-Actions       | Register User, Access admin page (http://127.0.0.1:8000/admin), Reset password, Lock and Unlock User
-Restrictions  | Cannot access Admin
+Actions       | Register User, Admin page access, reset password, Lock/Unlock User
+Restrictions  | None
 Credentials   | username: baba, password: AprMay$$129
 
 Test output is available in the file "ReadMe_TestOutput.docx"
+
+## Login
