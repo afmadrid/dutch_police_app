@@ -55,7 +55,7 @@ def user_profile(request):
             if user_form.is_valid() and profile_form.is_valid():
                 user_form.save()
                 profile_form.save()
-                messages.success(request, 'Your profile is updated successfully')
+                messages.success(request, 'Your profile was updated successfully.')
                 return redirect(to='/')
         else:
             user_form = UpdateUserForm(instance=request.user)
@@ -63,7 +63,7 @@ def user_profile(request):
         return render(request, 'profile.html', {'user_form': user_form, 'profile_form': profile_form})
     else:
         # if the user does not have authentication show error message and redirct him to login page
-        messages.error(request, 'Your are not logged in')
+        messages.error(request, 'You are not logged in.')
         return HttpResponseRedirect('/login/')
 
 
@@ -104,7 +104,7 @@ def create(request):
         return render(request, 'create.html', {'form': form})
     else:
         # if the user is not authorized show error message
-        messages.error(request, 'Your do not have permission to Add')
+        messages.error(request, 'You do not have permissions to Add New Record.')
         return HttpResponseRedirect('/show/')
     
 
@@ -133,7 +133,7 @@ def edit(request, id):
 
         return render(request, 'edit.html', {'case': case})
     else:
-        messages.error(request, 'Your do not have permission to edit')
+        messages.error(request, 'You do not have permissions to edit.')
         return HttpResponseRedirect('/show/')
 
 
@@ -176,6 +176,6 @@ def destroy(request, id):
         return render(request, 'delete.html', {'case': case})
     else:
         # if user does not have permission show error message
-        messages.error(request, 'Your do not have permission to delete')
+        messages.error(request, 'You do not have permissions to delete.')
         return HttpResponseRedirect('/show/')
 
