@@ -2,6 +2,8 @@
 
 This is Dutch Police Internet Forensic Project. This project is a web-based application implemented as a repository for Dutch Police online forensics. It allows police officers to access information from any site by using internet access.
 
+![alt text](pictures/start_page.png)
+
 ## Project Considerations
 
 This project was built using:
@@ -112,4 +114,71 @@ Credentials   | username: baba, password: AprMay$$129
 
 Test output is available in the file "ReadMe_TestOutput.docx"
 
-## Login
+## Login to the App and User Logging Validation
+Depending on user permissions, user can log to the adming configuration page or to the Dutch Police website.
+
+- Login to the Admin configuration page.
+![alt text](pictures/login_admin.png)
+
+- Login to the website.
+![alt text](pictures/login_page.png)
+
+- If user logging is succesful. logging successful message is displayed.
+![alt text](pictures/user_logged.png)
+
+- User has up to 5 attempts to log into the application. When incorrect password or user is entered message is displayed on the top.
+![alt text](pictures/failed_login_attempt.png)
+
+- After 5 attempts user is locked for 30 minutes.
+![alt text](pictures/user_locked.png)
+
+- Logging attempts and locked time is cofigured on the settings.py file.
+![alt text](pictures/login_attempt_code.png)
+
+## Password sign up and password update validation.
+When creating password for a new user, password validation is performed to ensure that new password adheres to security standards.
+
+- Character length validation.
+![alt text](pictures/password_signup_error_1.png)
+
+- Username similarity validation.
+![alt text](pictures/password_signup_error_2.png)
+
+- Email similarity validation.
+![alt text](pictures/password_signup_error_3.png)
+
+- Password too common validation.
+![alt text](pictures/password_signup_error_4.png)
+
+Same validations are performed when updating password for existing user.
+
+- Character length validation.
+![alt text](pictures/password_changed_error_1.png)
+
+- Password too common and entirely numeric validation.
+![alt text](pictures/password_changed_error_2.png)
+
+- Incorrect old password.
+![alt text](pictures/password_changed_error_3.png)
+
+All stored passwords are encrypted using argon2 hasher library so attackers cannot get acces to raw password even if they get access to the database. Next image shows how passwords are hasshed for existing users.
+
+![alt text](pictures/password_hashed.png)
+
+## User permissions validation.
+As mentioned before, users can perform different actions depending on the permissions they are given.
+
+- Investigator or Police Officer cannot access to Administration Configuration page.
+![alt text](pictures/no_admin_access.png)
+
+- Police Officers can view existing cases, but they cannot Add New Record, edit or delete them.
+    - Attempting to add new record.
+    ![alt text](pictures/case_list_no_permission_1.png)
+    - Viewing case details.
+    ![alt text](pictures/case_details.png)
+
+- Artifacts or images stored for each case are encrypted before storign them into the database, so information about them cannot be viewed even if attacker gets access to the DB.
+![alt text](pictures/case_list_in_db.png)
+
+- Admin Officers:
+![alt text](pictures/admin_officers.png)
